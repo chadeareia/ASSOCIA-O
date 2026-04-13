@@ -98,6 +98,41 @@
       font-size: 14px;
     }
 
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      text-align: center;
+    }
+
+    .modal-img {
+      max-width: 90%;
+      max-height: 70%;
+      border-radius: 10px;
+    }
+
+    #legenda {
+      color: white;
+      margin-top: 15px;
+      font-size: 16px;
+    }
+
+    .fechar {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
     footer {
       background: #2f855a;
       color: white;
@@ -113,13 +148,18 @@
       border-radius: 5px;
       display: inline-block;
     }
+
+    .insta {
+      background: linear-gradient(45deg, #E1306C, #F77737);
+    }
+
   </style>
 </head>
 
 <body>
 
 <header id="topo">
-  <img src="logo.png" alt="Logo da Associação">
+  <img src="logo.png">
   <h1>
     ASSOCIAÇÃO DOS PEQUENOS PRODUTORES RURAIS, MORADORES E FAMILIARES
     DAS COMUNIDADES CHÃ DE AREIA E FIGUEIREDO II
@@ -139,38 +179,20 @@
 <section id="sobre">
   <div class="card">
     <h2>Sobre a Associação</h2>
-    <p>
-      A associação está situada no município de Pilar - PB, reunindo pequenos produtores
-      rurais, moradores e familiares das comunidades Chã de Areia e Figueiredo II.
-    </p>
-    <p>
-      Nosso objetivo é fortalecer a agricultura familiar, promover o desenvolvimento
-      social e melhorar a qualidade de vida da comunidade.
-    </p>
-    <p>
-      Principais áreas de atuação: Compras coletivas; Comercialização conjunta; 
-      Representação e defesa; Desenvolvimento sustentável; Capacitação e organização.
-    </p>
+    <p>A associação está situada no município de Pilar - PB.</p>
+    <p>Nosso objetivo é fortalecer a agricultura familiar.</p>
   </div>
 </section>
 
 <section id="producao">
   <div class="card">
     <h2>Produção Agrícola</h2>
-    <p>
-      Ações voltadas à agricultura familiar,
-      com produção de alimentos e fortalecimento da economia local.
-    </p>
 
     <div class="galeria">
-
       <div class="img-container">
         <img src="foto1.jpeg">
         <div class="texto">Produtos da agricultura familiar.</div>
       </div>
-
-      
-
     </div>
   </div>
 </section>
@@ -178,38 +200,17 @@
 <section id="acoes">
   <div class="card">
     <h2>Ações Sociais</h2>
-    <p>
-      Ações sociais voltadas ao fortalecimento da comunidade,
-      promovendo união, apoio às famílias e desenvolvimento social.
-    </p>
 
     <div class="galeria">
-
       <div class="img-container">
         <img src="fotosemente.jpeg">
-        <div class="texto">Entrega de sementes para plantio - safra 2026.</div>
+        <div class="texto">Entrega de sementes - 2026.</div>
       </div>
-      
+
       <div class="img-container">
         <img src="fotopeixe.jpeg">
         <div class="texto">Entrega de peixes - 2026.</div>
       </div>
-      
-      <div class="img-container">
-        <img src="foto3.jpeg">
-        <div class="texto">Sementes advindas do programa Estadual de Aquisição e Distribuição de Sementes.</div>
-      </div>
-
-      <div class="img-container">
-        <img src="foto4.jpeg">
-        <div class="texto">Inscrições do prog. garantia safra.</div>
-      </div>
-      
-      <div class="img-container">
-        <img src="foto2.jpeg">
-        <div class="texto">Reunião com os associados.</div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -217,7 +218,6 @@
 <section id="contato">
   <div class="card">
     <h2>Contato</h2>
-    <p>Clique aqui e fale conosco:</p>
 
     <a class="btn" href="https://wa.me/5583987346274" target="_blank">
       WhatsApp
@@ -228,14 +228,44 @@
     <a class="btn insta" href="https://instagram.com/associacao_prmfcaf" target="_blank">
       Instagram
     </a>
-
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Associação dos pequenos produtores rurais, moradores e familiares das comunidades Chã de Areia e Figueiredo II - Pilar PB</p>
+  <p>© 2026 Associação dos Pequenos Produtores - Pilar PB</p>
   <p>Fundada em 22 de setembro de 1989</p>
 </footer>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <span class="fechar">&times;</span>
+  <img class="modal-img" id="imgModal">
+  <div id="legenda"></div>
+</div>
+
+<script>
+  const modal = document.getElementById("modal");
+  const modalImg = document.getElementById("imgModal");
+  const legenda = document.getElementById("legenda");
+
+  document.querySelectorAll(".img-container img").forEach(img => {
+    img.onclick = function() {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      legenda.innerText = this.nextElementSibling.innerText;
+    }
+  });
+
+  document.querySelector(".fechar").onclick = function() {
+    modal.style.display = "none";
+  }
+
+  modal.onclick = function(e) {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
 
 </body>
 </html>
